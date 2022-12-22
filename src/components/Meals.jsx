@@ -3,7 +3,7 @@ import { useGlobalContext } from '../context'
 import { AiFillLike } from 'react-icons/ai'
 
 const Meals = () => {
-	const { meals, loading } = useGlobalContext()
+	const { meals, loading, selectMeal, addToFavorites } = useGlobalContext()
 
 	if(loading) {
 		return <section className="section">
@@ -21,10 +21,10 @@ const Meals = () => {
 			const {idMeal, strMeal:title, strMealThumb:image} = singleMeal
 	
 			return <article key={idMeal} className="single-meal">
-				<img src={image} className="img"/>
+				<img src={image} className="img" onClick={() => selectMeal(idMeal)}/>
 				<footer>
 					<h5>{title}</h5>
-					<button className="like-btn"><AiFillLike/></button>
+					<button className="like-btn" onClick={()=> addToFavorites(idMeal)}><AiFillLike/></button>
 				</footer>					
 			</article>
 		})}
